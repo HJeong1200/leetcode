@@ -22,3 +22,7 @@ var removeNthFromEnd = function (head, n) {
 
   return head;
 };
+
+/**
+ * Linked List에서 n번째를 없애려면 n-1번째에서 list.next = list.next.next를 한다.
+ */
