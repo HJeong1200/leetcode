@@ -18,7 +18,8 @@ var nextGreaterElements = function (nums) {
   return result;
 };
 
-// using monotonic stack
+// using stack
+// we store indices instead of elements since there could be duplicates in the nums array.
 
 var nextGreaterElements = function (nums) {
   let numsArr = [...nums, ...nums];
