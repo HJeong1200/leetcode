@@ -1,3 +1,10 @@
+/**
+ * Inorder traversal (중위 순회)
+ *
+ * Left -> Root -> Right 순서로 트리 탐색
+ *
+ */
+
 var inorderTraversal = function (root) {
   let output = [];
 
@@ -17,9 +24,10 @@ var inorderTraversal = function (root) {
 };
 
 /**
- * Inorder traversal (중위 순회)
+ * Using Stack
  *
- * Left -> Root -> Right 순서로 트리 탐색
+ * stack에 push하는 current는 current.val이 아니라 current 그 자체임
+ * 그래서 current = stack.pop()을 하면 해당 노드에 대한 정보를 가져올 수 있음!
  *
  */
 
