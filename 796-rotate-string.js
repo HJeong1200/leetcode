@@ -8,3 +8,7 @@ var rotateString = function (s, goal) {
 };
 
 // rotate이기 때문에 length 조건을 넣어야 함
+
+// Rolling Hash
+
+// KMP
