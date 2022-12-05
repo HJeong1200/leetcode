@@ -29,3 +29,29 @@ var middleNode = function (head) {
 
   return midNode;
 };
+
+// 221205 ver.
+
+var middleNode = function (head) {
+  let count = 0;
+  let curNode = head;
+
+  function traverse(node) {
+    if (!node) return;
+
+    count++;
+    traverse(node.next);
+  }
+
+  traverse(curNode);
+
+  let mid = Math.floor(count / 2) + 1;
+  curNode = head;
+
+  while (mid > 1) {
+    curNode = curNode.next;
+    mid--;
+  }
+
+  return curNode;
+};
