@@ -5,7 +5,7 @@ var solveNQueens = function (n) {
   const results = [];
   let queens = n;
 
-  function dfs(queens, col, row, board) {
+  function dfs(queens, row, board) {
     if (queens === 0) {
       results.push([...Array.from(board)]);
       return;
@@ -14,13 +14,13 @@ var solveNQueens = function (n) {
     for (let i = 0; i < n; i++) {
       if (isValid(row, i, board)) {
         board[row] = board[row].slice(0, i) + "Q" + board[row].slice(i + 1);
-        dfs(queens - 1, col, row + 1, board);
+        dfs(queens - 1, row + 1, board);
         board[row] = board[row].slice(0, i) + "." + board[row].slice(i + 1);
       }
     }
   }
 
-  dfs(queens, 0, 0, board);
+  dfs(queens, 0, board);
 
   return results;
 };
