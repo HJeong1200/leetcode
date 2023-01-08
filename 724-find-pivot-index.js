@@ -44,3 +44,19 @@ function findTotal(arr) {
   }
   return result;
 }
+
+// 2023 ver.
+
+var pivotIndex = function (nums) {
+  let leftSum = 0;
+  let rightSum = nums.reduce((acc, cur) => acc + cur) - nums[0];
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    if (leftSum === rightSum) return i;
+
+    leftSum += nums[i];
+    rightSum -= nums[i + 1];
+  }
+
+  return leftSum === rightSum ? nums.length - 1 : -1;
+};
