@@ -100,3 +100,19 @@ var maxProfit = function (arr) {
 /**
  *  arr[i]에서의 최댓값은 arr[i] - arr[i - 1] or arr[i] - arr[start] where start = arr[i - 1]에서의 최댓값을 나타내는 시작 인덱스.
  */
+
+// 뭘 저리 복잡하게 풀었지..?
+
+var maxProfit = function (prices) {
+  if (prices.length === 1) return 0;
+
+  let minPrice = prices[0];
+  let maxProfit = 0;
+
+  for (let i = 1; i < prices.length; i++) {
+    maxProfit = Math.max(maxProfit, prices[i] - minPrice);
+    minPrice = Math.min(minPrice, prices[i]);
+  }
+
+  return maxProfit;
+};
