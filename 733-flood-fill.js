@@ -28,3 +28,25 @@ var floodFill = function (image, sr, sc, color) {
 };
 
 // helper function에서 조건을 확인할 때 image[sr + 1][sc] 가 아닌 sr + 1 < m 이런 식으로 해야 함
+
+var floodFill = function (image, sr, sc, color) {
+  const prevColor = image[sr][sc];
+
+  if (prevColor === color) return image;
+
+  colorImage(image, sr, sc, prevColor, color);
+
+  return image;
+};
+
+const colorImage = (image, sr, sc, prevColor, color) => {
+  if (sr < 0 || sr >= image.length || sc < 0 || sc >= image[0].length) return;
+  if (image[sr][sc] !== prevColor) return;
+
+  image[sr][sc] = color;
+
+  colorImage(image, sr + 1, sc, prevColor, color);
+  colorImage(image, sr - 1, sc, prevColor, color);
+  colorImage(image, sr, sc + 1, prevColor, color);
+  colorImage(image, sr, sc - 1, prevColor, color);
+};
