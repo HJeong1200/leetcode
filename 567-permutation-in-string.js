@@ -34,3 +34,30 @@ var checkInclusion = function (s1, s2) {
 };
 
 // permutation 확인하는 법 -> 모든 글자의 빈도가 동일하면 permutation
+
+var checkInclusion = function (s1, s2) {
+  const s1Arr = Array(26).fill(0);
+
+  for (let i = 0; i < s1.length; i++) {
+    s1Arr[s1[i].codePointAt() - 97]++;
+  }
+
+  for (let i = 0; i <= s2.length - s1.length; i++) {
+    if (i === 0) {
+      for (let j = 0; j < s1.length; j++) {
+        s1Arr[s2[j].codePointAt() - 97]--;
+      }
+    } else {
+      s1Arr[s2[i - 1].codePointAt() - 97]++;
+      s1Arr[s2[i + s1.length - 1].codePointAt() - 97]--;
+    }
+
+    if (isSame(s1Arr)) return true;
+  }
+
+  return false;
+};
+
+function isSame(arr) {
+  return arr.every((el) => el === 0);
+}
