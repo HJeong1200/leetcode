@@ -35,3 +35,23 @@ var maxDepth = function (root) {
 
   return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
 };
+
+// 2023 ver
+
+var maxDepth = function (root) {
+  let depth = 0;
+
+  const dfs = (node, curDepth) => {
+    if (!node) {
+      depth = Math.max(depth, curDepth);
+      return;
+    }
+
+    dfs(node.right, curDepth + 1);
+    dfs(node.left, curDepth + 1);
+  };
+
+  dfs(root, 0);
+
+  return depth;
+};

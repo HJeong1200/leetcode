@@ -51,3 +51,27 @@ var minDiffInBST = function (root) {
 
   return min;
 };
+
+// Inorder traversal of Binary Search Tree produces a sorted array
+
+var minDiffInBST = function (root) {
+  const values = [];
+
+  const dfs = (node) => {
+    if (!node) return;
+
+    dfs(node.left);
+    values.push(node.val);
+    dfs(node.right);
+  };
+
+  dfs(root);
+
+  let minDiff = Infinity;
+
+  for (let i = 1; i < values.length; i++) {
+    minDiff = Math.min(minDiff, values[i] - values[i - 1]);
+  }
+
+  return minDiff;
+};
