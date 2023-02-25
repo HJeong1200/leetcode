@@ -33,3 +33,32 @@ var invertTree = function (root) {
 
   return root;
 };
+
+// 2023 ver
+
+var invertTree = function (root) {
+  if (!root) return root;
+
+  const newTree = new TreeNode();
+  newTree.val = root.val;
+
+  const dfs = (node, newNode) => {
+    if (!node) return;
+
+    if (node.left) {
+      newNode.right = new TreeNode();
+      newNode.right.val = node.left.val;
+      dfs(node.left, newNode.right);
+    }
+
+    if (node.right) {
+      newNode.left = new TreeNode();
+      newNode.left.val = node.right.val;
+      dfs(node.right, newNode.left);
+    }
+  };
+
+  dfs(root, newTree);
+
+  return newTree;
+};
