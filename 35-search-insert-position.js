@@ -62,3 +62,20 @@ var searchInsert = function (nums, target) {
   }
   return nums[l] < target ? l + 1 : l;
 };
+
+// 2023 ver
+
+var searchInsert = function (nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left < right) {
+    const mid = Math.floor((left + right) / 2);
+
+    if (nums[mid] === target) return mid;
+    if (nums[mid] > target) right = mid;
+    if (nums[mid] < target) left = mid + 1;
+  }
+
+  return nums[left] < target ? left + 1 : left;
+};
