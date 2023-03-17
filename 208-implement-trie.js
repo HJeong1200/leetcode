@@ -35,6 +35,61 @@ Trie.prototype.startsWith = function (prefix) {
   return false;
 };
 
+// 이게 진짜 Trie!!
+
+var Trie = function () {
+  this.char = new Map();
+  this.end = false;
+};
+
+/**
+ * @param {string} word
+ * @return {void}
+ */
+Trie.prototype.insert = function (word) {
+  let curTrie = this;
+
+  for (let str of word) {
+    if (!curTrie.char.has(str)) curTrie.char.set(str, new Trie());
+
+    curTrie = curTrie.char.get(str);
+  }
+
+  curTrie.end = true;
+};
+
+/**
+ * @param {string} word
+ * @return {boolean}
+ */
+Trie.prototype.search = function (word) {
+  let curTrie = this;
+
+  for (let str of word) {
+    if (!curTrie.char.has(str)) return false;
+
+    curTrie = curTrie.char.get(str);
+  }
+
+  return curTrie.end;
+};
+
+/**
+ * @param {string} prefix
+ * @return {boolean}
+ */
+Trie.prototype.startsWith = function (prefix) {
+  let curTrie = this;
+
+  for (let str of prefix) {
+    if (!curTrie.char.has(str)) return false;
+
+    curTrie = curTrie.char.get(str);
+  }
+
+  return true;
+};
+
 /**
  * Your Trie object will be instantiated and called as such:
  * var obj = new Trie()
