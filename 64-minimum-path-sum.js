@@ -28,3 +28,20 @@ var minPathSum = function (grid) {
 
   return result[m - 1][n - 1];
 };
+
+// 2023.03
+
+var minPathSum = function (grid) {
+  grid.unshift(Array(grid[0].length).fill(Infinity));
+  grid.map((row) => row.unshift(Infinity));
+
+  for (let i = 1; i < grid.length; i++) {
+    for (let j = 1; j < grid[0].length; j++) {
+      if (i === 1 && j === 1) continue;
+
+      grid[i][j] += Math.min(grid[i - 1][j], grid[i][j - 1]);
+    }
+  }
+
+  return grid[grid.length - 1][grid[0].length - 1];
+};
